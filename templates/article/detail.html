@@ -9,6 +9,30 @@
 
 <!-- 写入 base.html 中定义的 content -->
 {% block content %}
+<!-- 添加删除按钮样式 -->
+<style>
+    .delete-btn {
+        padding: 8px 16px;
+        background-color: #dc3545;
+        color: white !important;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+    }
+
+    .delete-btn:hover {
+        background-color: #c82333;
+        color: white !important;
+
+    }
+
+    .delete-btn i {
+        margin-right: 5px;
+    }
+</style>
 
 <!-- 文章详情 -->
 <div class="container">
@@ -21,9 +45,8 @@
             <p>{{ article.body|safe }}</p>
         </div>
         <!-- 删除文章-->
-        <div class="col-12 alert alert-success">作者：{{ article.author }}
-            <a href="#" onclick="confirm_delete()">删除文章</a>
-        </div>
+        <a class="btn delete-btn" href="#" onclick="confirm_delete()">删除文章</a>
+
         <!-- 新增一个隐藏的表单 -->
         <form
               style="display:none;"
