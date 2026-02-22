@@ -20,7 +20,40 @@
         <div class="col-12">
             <p>{{ article.body|safe }}</p>
         </div>
+        <!-- 删除文章-->
+        <div class="col-12 alert alert-success">作者：{{ article.author }}
+            <a href="#" onclick="confirm_delete()">删除文章</a>
+        </div>
+        <!-- 新增一个隐藏的表单 -->
+        <form
+              style="display:none;"
+              id="safe_delete"
+              action="{% url 'article:article_safe_delete' article.id %}"
+              method="POST"
+              >
+            {% csrf_token %}
+            <button type="submit">发送</button>
+        </form>
     </div>
 </div>
+
+<script>
+    // 删除文章的函数
+    function confirm_delete() {
+        // 调用layer弹窗组件
+        layer.open({
+            // 弹窗标题
+            title: "确认删除",
+            // 正文
+            content: "确认删除这篇文章吗？",
+            // 点击确定按钮后调用的回调函数
+            yes: function(index, layero) {
+                // 需要前往的url
+                $('form#safe_delete button').click();
+                layer.close(index);
+            },
+        })
+    }
+</script>
 
 {% endblock content %}
