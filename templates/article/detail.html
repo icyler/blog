@@ -45,8 +45,8 @@
             <p>{{ article.body|safe }}</p>
         </div>
         <!-- 删除文章-->
-        <a class="btn delete-btn" href="#" onclick="confirm_delete()">删除文章</a>
-
+        <a class="btn delete-btn" href="#" onclick="confirm_delete()" style="margin-right: 10px;">删除文章</a>
+        <a class="btn btn-primary" href="{% url 'article:article_update' article.id %}">编辑文章</a>
         <!-- 新增一个隐藏的表单 -->
         <form
               style="display:none;"
